@@ -1,0 +1,40 @@
+QUERY - Data - SELECT(조회)
+DML(Data Manipulation Language) - Data - INSERT(입력), DELETE(삭제), UPGRADE(수정)
+TCL(Transaction Control Language) - Transaction - COMMIT(저장), ROLLBACK(취소), SAVEPOINT(중간 저장점)
+DDL(Data Definition Language) - Object - CREATE(생성), ALTER(변경), DROP(삭제), TRUNCATE(절삭)
+DCL(Data Control Language) - 권한 - GRANT(부여), REVOKE(취소)
+
+1. RDBMS에 접근하는 유일한 언어
+2. ANSI/ISO - SQL
+  -국제 표준으로 공통 사용
+3. English-like
+  -영어 문장과 유사한 구조로 이해하기 쉬움
+4. 비절차적 언어
+   -절차적은 무엇을 할지 어떻게 할지 모두 명시
+    비절차적은 무엇을 할 지만 명시하고 어떻게는 DBMS가 알아서 처리
+
+NULL					원자성 - 모두 실행되거나 아무것도 실행하지 않아야함
+제어불가				고립성 - 동시에 실행되는 트랜잭션 간 간섭방지							
+비교불가				지속성 - 트랜잭션 완료 후 결과는 영구보존
+연산불가
+
+DECODE
+SELECT DEPTNO,ENAME,DECODE(DEPTNO,10,'ACCOUNTING',20,'RESEARCH',30,'SALES','ETC')
+FROM EMP ORDER BY DEPTNO;
+
+CASE
+SELECT DEPTNO,ENAME,
+		CASE DEPTNO WHEN '10' THEN 'ACCOUNTING'
+				   WHEN '20' THEN 'RESEARCH'
+				   WHEN '30' THEN 'SALES'
+				   ELSE		 'ETC'
+		END AS DEPARTMENT
+FROM EMP ORDER BY DEPTNO;
+
+ROUND
+SELECT ROUND(45.932,2), ROUND(45.923,1), ROUND(45.923,0), ROUND(45.923), ROUND(45.923,-1) FROM DUAL;
+
+SUBQUERY
+SELECT DEPTNO,JOB,ENAME,SAL FROM EMP
+WHERE (DEPTNO,JOB) IN (SELECT DEPTNO,JOB FROM EMP
+				 GROUP BY DEPTNO,JOB HAVING AVG(SAL) > 2000);
