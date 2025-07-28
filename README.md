@@ -1,5 +1,11 @@
 # doit1
 # 개발자 소개
+|제목|내용|설명|
+|------|---|---|
+|이름|송윤석|테스트|
+|기술|Frontend  |html, css, js, kotlin|
+|    |Backend  |django, flask|
+|    |DataBase |Oracle|
 # 작품 1 - django framework 활용 게시판 만들기
 ### 설계도
 <img src = "archi.jpg" />
